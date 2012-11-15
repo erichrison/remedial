@@ -55,7 +55,7 @@ class vector {
   void pop_back();
   iterator insert(iterator p, const T& x);
   void insert(iterator p, size_type n, const T& x);
-  template <typename I> void insert(I p, I first, I last);
+  template <typename I> void insert(iterator p, I first, I last);
   iterator erase(iterator p);
   iterator erase(iterator first, iterator last);
   void swap(vector<T>& v);
