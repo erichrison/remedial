@@ -10,8 +10,18 @@ type Interface interface {
     Compare(i, j int) bool
 }
 
-func mergesort(data Interface) {
+func InsertionSort(data Interface) {
+    for i := 1; i < data.Length(); i++ {
+        e := i;
+        for e > 0 && data.Compare(e, e - 1) {
+            data.Swap(e, e - 1)
+            e--;
+        }
+    }
 }
 
-func quicksort(data Interface) {
+func MergeSort(data Interface) {
+}
+
+func QuickSort(data Interface) {
 }
