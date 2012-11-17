@@ -48,7 +48,7 @@ func main() {
                 fmt.Println("Non-integer: " + strings.TrimSpace(s))
             }
         }
-        rtlsort.InsertionSort(SimpleArray{vec})
+        rtlsort.QuickSort(SimpleArray{vec})
         fmt.Println(vec)
     }
 }

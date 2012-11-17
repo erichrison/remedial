@@ -1,6 +1,10 @@
 package rtlsort;
 
-type Interface interface {
+import (
+    "math/rand"
+)
+
+type InPlace interface {
     // number of elements
     // elements are at indices 0 through Length() - 1
     Length() int
@@ -10,7 +14,7 @@ type Interface interface {
     Compare(i, j int) bool
 }
 
-func InsertionSort(data Interface) {
+func InsertionSort(data InPlace) {
     for i := 1; i < data.Length(); i++ {
         e := i;
         for e > 0 && data.Compare(e, e - 1) {
@@ -20,8 +24,23 @@ func InsertionSort(data Interface) {
     }
 }
 
-func MergeSort(data Interface) {
+func QuickSort(data InPlace) {
+    quickSort(data, 0, data.Length())
 }
 
-func QuickSort(data Interface) {
+func quickSort(data InPlace, a, b int) {
+    if b - a < 2 {
+        return
+    }
+    data.Swap(a, a + rand.Intn(b - a))
+    m := a
+    for i := a + 1; i < b; i++ {
+        if data.Compare(i, a) {
+            m++
+            data.Swap(i, m)
+        }
+    }
+    data.Swap(a, m)
+    quickSort(data, a, m)
+    quickSort(data, m + 1, b)
 }
