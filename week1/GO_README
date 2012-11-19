@@ -1,0 +1,6 @@
+If I remember everything correctly, this is how to run and test this go code:
+
+1. Set GOPATH to point to this directory (/.../week1).
+2. Test a package (if I've written any tests) with "go test <pkg>", e.g. "go test rtlvector"
+3. Build the program with "go install week1". (It just "installs" in a subdirectory.)
+4. Run it with "bin/week1 [datafile]...", e.g. "bin/week1 data/set1 data/set2".  It prints a separate sorted line for each file.
