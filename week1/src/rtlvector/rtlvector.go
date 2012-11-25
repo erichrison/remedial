@@ -54,3 +54,17 @@ func (v Vector) PushBack(val interface{}) Vector {
     v.length++
     return v
 }
+
+func (v Vector) PopBack() (Vector, interface{}) {
+    val := v.data[v.length - 1]
+    v.data[v.length - 1] = nil
+    v.length--
+    if cap(v.data) > 10 && v.length < cap(v.data) / 4 {
+        olddata := v.data
+        v.data = make([]Elem, cap(olddata) / 2, cap(olddata) / 2)
+        for i := 0; i < v.length; i++ {
+            v.data[i] = olddata[i]
+        }
+    }
+    return v, val
+}

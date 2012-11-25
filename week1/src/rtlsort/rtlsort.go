@@ -44,3 +44,36 @@ func quickSort(data InPlace, a, b int) {
     quickSort(data, a, m)
     quickSort(data, m + 1, b)
 }
+
+func HeapSort(data InPlace) {
+    makeHeap(data)
+    for i := data.Length() - 1; i > 0; i-- {
+        data.Swap(0, i)
+        heapify(data, 0, i)
+    }
+}
+
+func makeHeap(data InPlace) {
+    l := data.Length()
+    for i := (l - 2) / 2; i >= 0; i-- {
+        heapify(data, i, l)
+    }
+}
+
+func heapify(data InPlace, root, cap int) {
+    left := root * 2 + 1
+    for left < cap {
+        right := left + 1
+        bigger := left
+        if right < cap && data.Compare(left, right) {
+            bigger = right
+        }
+        if data.Compare(root, bigger) {
+            data.Swap(root, bigger)
+            root = bigger
+            left = root * 2 + 1
+        } else {
+            return
+        }
+    }
+}
