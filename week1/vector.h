@@ -2,6 +2,7 @@
 #pragma once
 
 #include <cstddef>  // for size_t
+#include <iterator>  // for reverse_iterator
 
 // "Remedial Template Library"
 namespace rtl {
@@ -14,8 +15,8 @@ class vector {
   typedef size_t size_type;
   typedef T* iterator;
   typedef const T* const_iterator;
-  typedef T* reverse_iterator;
-  typedef const T* const_reverse_iterator;
+  typedef std::reverse_iterator<iterator> reverse_iterator;
+  typedef std::reverse_iterator<const_iterator> const_reverse_iterator;
 
   explicit vector(size_type n = 0, const T& x = T());
   vector(const vector<T>& v);
@@ -35,7 +36,7 @@ class vector {
 
   size_type size() const;
   size_type max_size() const;
-  void resize(size_type size, T copy = T());
+  void resize(size_type size, const T& copy = T());
   size_type capacity() const;
   bool empty() const;
   void reserve(size_type n);
@@ -54,8 +55,8 @@ class vector {
   void push_back(const T& x);
   void pop_back();
   iterator insert(iterator p, const T& x);
-  void insert(iterator p, size_type n, const T& x);
-  template <typename I> void insert(I p, I first, I last);
+  iterator insert(iterator p, size_type n, const T& x);
+  template <typename I> iterator insert(iterator p, I first, I last);
   iterator erase(iterator p);
   iterator erase(iterator first, iterator last);
   void swap(vector<T>& v);
